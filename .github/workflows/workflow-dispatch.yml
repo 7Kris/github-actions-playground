@@ -22,6 +22,8 @@ jobs:
     steps:
       - id: branch-name
         run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+      - name: Try to fail
+        run: exit 1
   main:
     runs-on: ubuntu-latest
     needs: fetch-branch-name
