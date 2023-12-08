@@ -1,0 +1,22 @@
+name: (On Dispatch) Deploy Beta
+on:
+  workflow_dispatch:
+    inputs:
+      group:
+        type: choice
+        description: Where to deploy to
+        options:
+          - dev
+          - client
+
+jobs:
+  deploy-beta-dev:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.group == 'dev' }}
+    steps:
+      - run: echo "dev chosen"
+  deploy-beta-client:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.group == 'client' }}
+    steps:
+      - run: echo "client chosen"
