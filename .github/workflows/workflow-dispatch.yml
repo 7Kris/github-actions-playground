@@ -1,25 +1,9 @@
 name: Workflow dispatch
 on:
-  workflow_dispatch:
-    inputs:
-      name:
-        required: true
-        type: string
-      choice:
-        required: true
-        type: choice
-        options:
-          - '1'
-          - '2'
-          - '3'
+  workflow_dispatch
 
 jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - id: extract-branch-name
-        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ steps.extract-branch-name.outputs.branch }}
-      - run: echo "fetched branch named ${{ steps.extract-branch-name.outputs.branch }}"
+      - run: echo "do nothing"
