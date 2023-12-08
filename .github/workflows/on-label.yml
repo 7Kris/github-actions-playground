@@ -19,6 +19,8 @@ jobs:
     timeout-minutes: 2
     steps:
       - run: echo "added label to branch ${{ needs.fetch-branch-name.outputs.branch }}"
+      - name: Try to fail
+        run: exit 1
   on-failure:
     runs-on: ubuntu-latest
     timeout-minutes: 2
