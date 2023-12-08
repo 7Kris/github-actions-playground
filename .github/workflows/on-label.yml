@@ -1,0 +1,22 @@
+name: (On Label) Test
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  fetch-branch-name:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    outputs:
+      branch: ${{ steps.branch-name.outputs.branch }}
+    steps:
+      - id: branch-name
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+  echo-branch-name:
+    needs: fetch-branch-name
+    if: ${{ github.event.label.name == 'test-label' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - run: echo "added label to branch ${{ needs.fetch-branch-name.outputs.branch }}"
+      
