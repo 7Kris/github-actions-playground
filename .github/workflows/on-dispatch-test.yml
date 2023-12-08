@@ -20,6 +20,6 @@ jobs:
   send-slack:
     needs: something-failing
     runs-on: ubuntu-latest
-    if: inputs.silent == 'false' && failure()
+    if: inputs.silent != 'true' && failure()
     steps:
       - run: echo "dev chosen"
