@@ -8,15 +8,18 @@ on:
         options:
           - dev
           - client
+      silent:
+        type: boolean
+        description: Skip notifications
 
 jobs:
-  deploy-beta-dev:
+  something-failing:
     runs-on: ubuntu-latest
-    if: ${{ inputs.group == 'dev' }}
+    steps:
+      - run: exit 1
+  send-slack:
+    needs: something-failing
+    runs-on: ubuntu-latest
+    if: ${{ inputs.silent == 'false' && failure() }}
     steps:
       - run: echo "dev chosen"
-  deploy-beta-client:
-    runs-on: ubuntu-latest
-    if: ${{ inputs.group == 'client' }}
-    steps:
-      - run: echo "client chosen"
