@@ -15,13 +15,13 @@ concurrency:
 
 jobs:
   dev-slack:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     timeout-minutes: 2
     if: github.event.inputs.silent != 'true' && github.event.inputs.fastlane-lane == 'beta_dev'
     steps:
       - run: echo "lane was beta_dev"
   client-slack:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     timeout-minutes: 2
     if: github.event.inputs.silent != 'true' && github.event.inputs.fastlane-lane == 'beta'
     steps:

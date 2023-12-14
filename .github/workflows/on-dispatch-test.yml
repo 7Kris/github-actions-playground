@@ -1,4 +1,4 @@
-name: (On Dispatch) Deploy Beta
+name: (On Dispatch) Test
 on:
   workflow_dispatch:
     inputs:
