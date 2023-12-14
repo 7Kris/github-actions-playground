@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-      - run: echo "${{ inputs.fastlane-lane }}"
+      - run: exit 1
   dev-slack:
     runs-on: ubuntu-latest
     timeout-minutes: 2
@@ -32,6 +32,7 @@ jobs:
     steps:
       - run: echo "lane was beta"
   on-failure:
+    needs: output-something
     runs-on: ubuntu-latest
     timeout-minutes: 2
     if: ${{ inputs.silent != 'true' && failure() }}
