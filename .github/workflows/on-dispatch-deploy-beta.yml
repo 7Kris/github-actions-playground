@@ -6,8 +6,8 @@ on:
         type: choice
         description: Deploy to group
         options:
-          - "dev"
-          - "client"
+          - dev
+          - client
       silent:
         type: boolean
         default: false
