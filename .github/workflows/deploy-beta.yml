@@ -1,0 +1,28 @@
+name: Deploy Beta
+on:
+  workflow_call:
+    inputs:
+      fastlane-lane:
+        required: true
+        type: string
+      silent:
+        default: false
+        type: boolean
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  dev-slack:
+    runs-on: self-hosted
+    timeout-minutes: 2
+    if: github.event.inputs.silent != 'true' && github.event.inputs.fastlane-lane == 'beta_dev'
+    steps:
+      - run: echo "lane was beta_dev"
+  client-slack:
+    runs-on: self-hosted
+    timeout-minutes: 2
+    if: github.event.inputs.silent != 'true' && github.event.inputs.fastlane-lane == 'beta'
+    steps:
+      - run: echo "lane was beta"

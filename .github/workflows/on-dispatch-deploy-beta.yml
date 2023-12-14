@@ -1,0 +1,30 @@
+name: (On Dispatch) Deploy Beta
+on:
+  workflow_dispatch:
+    inputs:
+      group:
+        type: choice
+        description: Deploy to group
+        options:
+          - dev
+          - client
+      silent:
+        type: boolean
+        default: false
+        description: Skip notifications
+
+jobs:
+  deploy-beta-dev:
+    if: ${{ inputs.group == 'dev' }}
+    uses: ./.github/workflows/deploy-beta.yml
+    with: 
+      fastlane-lane: beta_dev
+      silent: ${{ inputs.silent }}
+    secrets: inherit
+  deploy-beta-client:
+    if: ${{ inputs.group == 'client' }}
+    uses: ./.github/workflows/deploy-beta.yml
+    with: 
+      fastlane-lane: beta
+      silent: ${{ inputs.silent }}
+    secrets: inherit
