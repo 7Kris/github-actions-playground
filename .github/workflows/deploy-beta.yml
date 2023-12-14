@@ -31,3 +31,9 @@ jobs:
     if: ${{ inputs.silent != 'true' && inputs.fastlane-lane == 'beta' }}
     steps:
       - run: echo "lane was beta"
+  on-failure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    if: ${{ inputs.silent != 'true' && failure() }}
+    steps:
+      - run: echo "failure"
