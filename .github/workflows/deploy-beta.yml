@@ -18,7 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-      - run: echo "${{ inputs.fastlane-lane }}"
+      - run: |
+          echo "fastlane-lane: ${{ inputs.fastlane-lane }}"
+          echo "silent: ${{ inputs.silent }}"
   dev-slack:
     runs-on: ubuntu-latest
     timeout-minutes: 2
