@@ -24,12 +24,12 @@ jobs:
   dev-slack:
     runs-on: ubuntu-latest
     timeout-minutes: 2
-    if: ${{ inputs.silent != 'true' && inputs.fastlane-lane == 'beta_dev' }}
+    if: ${{ inputs.silent != true && inputs.fastlane-lane == 'beta_dev' }}
     steps:
       - run: echo "lane was beta_dev"
   client-slack:
     runs-on: ubuntu-latest
     timeout-minutes: 2
-    if: ${{ inputs.silent != 'true' && inputs.fastlane-lane == 'beta' }}
+    if: ${{ inputs.silent != true && inputs.fastlane-lane == 'beta' }}
     steps:
       - run: echo "lane was beta"
